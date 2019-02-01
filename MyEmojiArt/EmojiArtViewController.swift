@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmojiArtViewController: UIViewController, UIDropInteractionDelegate
+class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate
 {
 
     
@@ -19,12 +19,54 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate
         }
     }
     
-    @IBOutlet weak var emojiArtView: EmojiArtView!
-     var imageFetcher: ImageFetcher!
+    var emojiArtView = EmojiArtView()
+    var imageFetcher: ImageFetcher!
+    
+    @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
+    
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var scrollView: UIScrollView!{
+        didSet{
+            scrollView.minimumZoomScale = 0.1
+            
+            scrollView.maximumZoomScale = 5.0
+            scrollView.delegate = self
+            scrollView.addSubview(emojiArtView)
+        }
+    }
     
-   
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        scrollViewWidth.constant = scrollView.contentSize.width
+        scrollViewHeight.constant = scrollView.contentSize.height
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return emojiArtView
+    }
+    
+    var emojiArtViewBackgroundImage: UIImage? {
+        get{
+            return emojiArtView.backgroundImage
+        }
+        set{
+            scrollView.zoomScale = 1.0
+            emojiArtView.backgroundImage = newValue
+            let size = newValue?.size ?? CGSize.zero
+            emojiArtView.frame = CGRect(origin: CGPoint.zero, size: size)
+            scrollView?.contentSize = size
+            scrollViewWidth?.constant = size.width
+            scrollViewHeight?.constant = size.height
+            if let dropZone = self.dropZone, size.width > 0 , size.height > 0 {
+                scrollView?.zoomScale = max(dropZone.bounds.size.width / size.width, dropZone.bounds.size.height / size.height )
+            }
+        }
+    }
+    
+    
+    
+    
     
     // MARK: - VC life cycle
     override func viewDidLoad() {
@@ -50,7 +92,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate
         spinner.startAnimating()
         self.imageFetcher = ImageFetcher() { (url, image) in
             DispatchQueue.main.async{
-              self.emojiArtView.backgroundImage = image
+              self.emojiArtViewBackgroundImage = image
                 self.spinner.stopAnimating()
             }
             

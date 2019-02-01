@@ -78,27 +78,30 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5os-7A-8Qd">
                                 <rect key="frame" x="0.0" y="20" width="703.5" height="748"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdy-KG-4La" customClass="EmojiArtView" customModule="MyEmojiArt" customModuleProvider="target">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="703.5" placeholderIntrinsicHeight="748" translatesAutoresizingMaskIntoConstraints="NO" id="DZf-6w-1q2">
                                         <rect key="frame" x="0.0" y="0.0" width="703.5" height="748"/>
                                         <subviews>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ei2-xf-k0i">
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="37" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1R9-0R-yIX">
                                                 <rect key="frame" x="333.5" y="355.5" width="37" height="37"/>
                                                 <color key="color" red="0.13605034790000001" green="0.55668790530000001" blue="0.73378013959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </activityIndicatorView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="ei2-xf-k0i" firstAttribute="centerX" secondItem="jdy-KG-4La" secondAttribute="centerX" id="OjU-Gp-T9j"/>
-                                            <constraint firstItem="ei2-xf-k0i" firstAttribute="centerY" secondItem="jdy-KG-4La" secondAttribute="centerY" id="czV-jF-I6i"/>
+                                            <constraint firstAttribute="height" priority="250" constant="748" id="QXp-qs-grJ"/>
+                                            <constraint firstAttribute="width" priority="250" constant="703.5" id="bid-PM-sBo"/>
+                                            <constraint firstItem="1R9-0R-yIX" firstAttribute="centerY" secondItem="DZf-6w-1q2" secondAttribute="centerY" id="fUo-Fr-8ZY"/>
+                                            <constraint firstItem="1R9-0R-yIX" firstAttribute="centerX" secondItem="DZf-6w-1q2" secondAttribute="centerX" id="qTN-Pl-Evz"/>
                                         </constraints>
-                                    </view>
+                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="jdy-KG-4La" secondAttribute="bottom" id="Be6-Vh-tsc"/>
-                                    <constraint firstItem="jdy-KG-4La" firstAttribute="leading" secondItem="5os-7A-8Qd" secondAttribute="leading" id="YJT-5Z-sY6"/>
-                                    <constraint firstItem="jdy-KG-4La" firstAttribute="top" secondItem="5os-7A-8Qd" secondAttribute="top" id="fv3-si-jJ7"/>
-                                    <constraint firstAttribute="trailing" secondItem="jdy-KG-4La" secondAttribute="trailing" id="tSo-cX-nHV"/>
+                                    <constraint firstItem="DZf-6w-1q2" firstAttribute="centerX" secondItem="5os-7A-8Qd" secondAttribute="centerX" id="FEz-6t-lfA"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DZf-6w-1q2" secondAttribute="trailing" id="FI3-G1-hCD"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="DZf-6w-1q2" secondAttribute="bottom" id="GGU-Kg-4E0"/>
+                                    <constraint firstItem="DZf-6w-1q2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5os-7A-8Qd" secondAttribute="leading" id="KEU-P7-wIe"/>
+                                    <constraint firstItem="DZf-6w-1q2" firstAttribute="centerY" secondItem="5os-7A-8Qd" secondAttribute="centerY" id="LIE-Y4-5ul"/>
+                                    <constraint firstItem="DZf-6w-1q2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5os-7A-8Qd" secondAttribute="top" id="QTi-cq-1N7"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -113,8 +116,10 @@
                     </view>
                     <connections>
                         <outlet property="dropZone" destination="5os-7A-8Qd" id="Tml-4z-poF"/>
-                        <outlet property="emojiArtView" destination="jdy-KG-4La" id="nsi-iL-wYJ"/>
-                        <outlet property="spinner" destination="ei2-xf-k0i" id="B7d-vF-xfh"/>
+                        <outlet property="scrollView" destination="DZf-6w-1q2" id="bHz-Dj-TfV"/>
+                        <outlet property="scrollViewHeight" destination="QXp-qs-grJ" id="Jn1-4D-0CZ"/>
+                        <outlet property="scrollViewWidth" destination="bid-PM-sBo" id="IsT-LG-W1W"/>
+                        <outlet property="spinner" destination="1R9-0R-yIX" id="NQK-pd-sqq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
