@@ -22,6 +22,19 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate
     @IBOutlet weak var emojiArtView: EmojiArtView!
      var imageFetcher: ImageFetcher!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+   
+    
+    // MARK: - VC life cycle
+    override func viewDidLoad() {
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+//            self.spinner.stopAnimating()
+//        })
+        
+    }
+    
     
     // MARK: - Drag and Drop
     
@@ -34,9 +47,11 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        spinner.startAnimating()
         self.imageFetcher = ImageFetcher() { (url, image) in
             DispatchQueue.main.async{
               self.emojiArtView.backgroundImage = image
+                self.spinner.stopAnimating()
             }
             
 

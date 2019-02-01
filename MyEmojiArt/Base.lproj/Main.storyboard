@@ -23,7 +23,17 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdy-KG-4La" customClass="EmojiArtView" customModule="MyEmojiArt" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                                        <subviews>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ei2-xf-k0i">
+                                                <rect key="frame" x="493.5" y="355.5" width="37" height="37"/>
+                                                <color key="color" red="0.13605034790000001" green="0.55668790530000001" blue="0.73378013959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </activityIndicatorView>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ei2-xf-k0i" firstAttribute="centerX" secondItem="jdy-KG-4La" secondAttribute="centerX" id="7pL-eG-Uli"/>
+                                            <constraint firstItem="ei2-xf-k0i" firstAttribute="centerY" secondItem="jdy-KG-4La" secondAttribute="centerY" id="Tag-fp-hEV"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,6 +57,7 @@
                     <connections>
                         <outlet property="dropZone" destination="5os-7A-8Qd" id="Tml-4z-poF"/>
                         <outlet property="emojiArtView" destination="jdy-KG-4La" id="nsi-iL-wYJ"/>
+                        <outlet property="spinner" destination="ei2-xf-k0i" id="B7d-vF-xfh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
