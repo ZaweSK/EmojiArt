@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate
+class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
 
     
@@ -19,14 +19,16 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         }
     }
     
-    var emojiArtView = EmojiArtView()
-    var imageFetcher: ImageFetcher!
     
+    var imageFetcher: ImageFetcher!
+
+    
+    // MARK: - ScrollView
     @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
-    
-    
+    var emojiArtView = EmojiArtView()
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
             scrollView.minimumZoomScale = 0.1
@@ -64,22 +66,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         }
     }
     
-    
-    
-    
-    
-    // MARK: - VC life cycle
-    override func viewDidLoad() {
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-//            self.spinner.stopAnimating()
-//        })
-        
-    }
-    
-    
     // MARK: - Drag and Drop
-    
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
     }
@@ -112,6 +99,30 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             }
         })
     }
+    
+    
+    // MARK: - Collection View
+    
+    var emojis = "😇🏹🥎🕊🐒🦸🏼‍♀️🤫🛹📕♥️〒".map { String($0)}
+    
+    @IBOutlet weak var emojiCollectionView: UICollectionView! {
+        didSet{
+            emojiCollectionView.delegate = self
+            emojiCollectionView.dataSource = self
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return emojis.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath)
+        
+        return cell
+    }
+    
+   
     
    
  
