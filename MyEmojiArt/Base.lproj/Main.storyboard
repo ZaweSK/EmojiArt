@@ -117,7 +117,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmojiCell" id="0pa-T8-yiB">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmojiCell" id="0pa-T8-yiB" customClass="EmojiCollectionViewCell" customModule="MyEmojiArt" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -135,6 +135,26 @@
                                         <constraints>
                                             <constraint firstItem="hD4-zf-rkz" firstAttribute="centerX" secondItem="0pa-T8-yiB" secondAttribute="centerX" id="oAn-3D-Qxs"/>
                                             <constraint firstItem="hD4-zf-rkz" firstAttribute="centerY" secondItem="0pa-T8-yiB" secondAttribute="centerY" id="uYg-e8-6N2"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="label" destination="hD4-zf-rkz" id="hUs-4W-BC7"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DropPlaceholderCell" id="UcD-NL-etT">
+                                        <rect key="frame" x="90" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9JA-Cx-fao">
+                                                    <rect key="frame" x="30" y="30" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="9JA-Cx-fao" firstAttribute="centerY" secondItem="UcD-NL-etT" secondAttribute="centerY" id="9yh-M3-5Lm"/>
+                                            <constraint firstItem="9JA-Cx-fao" firstAttribute="centerX" secondItem="UcD-NL-etT" secondAttribute="centerX" id="ZDe-in-HGS"/>
                                         </constraints>
                                     </collectionViewCell>
                                 </cells>
